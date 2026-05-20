@@ -9,8 +9,12 @@
         "-g",
         "${file}",
         "-o",
-        "${fileDirname}/${fileBasenameNoExtension}"
-      ],
+        "${fileDirname}/${fileBasenameNoExtension}",
+        "-lsfml-graphics",
+        "-lsfml-window",
+        "-lsfml-system",
+        "-lsfml-audio"
+        ],
       "group": {
         "kind": "build",
         "isDefault": true

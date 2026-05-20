@@ -1,2 +1,0 @@
-# bullet7
-GameDev.
