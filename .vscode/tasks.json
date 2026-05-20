@@ -2,19 +2,25 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Build C++",
+      "label": "Build Bullet7",
       "type": "shell",
       "command": "g++",
       "args": [
         "-g",
-        "${file}",
+        "main.cpp",
+        "Game.cpp",
+        "Player.cpp",
+        "World.cpp",
+        "Bullet.cpp",
+        "HUD.cpp",
+        "UI.cpp",
         "-o",
-        "${fileDirname}/${fileBasenameNoExtension}",
+        "${workspaceFolder}/bullet7",
         "-lsfml-graphics",
         "-lsfml-window",
         "-lsfml-system",
         "-lsfml-audio"
-        ],
+      ],
       "group": {
         "kind": "build",
         "isDefault": true

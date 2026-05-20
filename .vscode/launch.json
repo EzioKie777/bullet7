@@ -8,14 +8,14 @@
             "name": "Bullet7 Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/a.out",
+            "program": "${workspaceFolder}/bullet7",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "preLaunchTask": "build",
+            "preLaunchTask": "Build Bullet7",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
