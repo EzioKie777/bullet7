@@ -15,7 +15,7 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "ms-vscode.cpptools",g++ -g main.cpp Game.cpp Player.cpp World.cpp Bullet.cpp HUD.cpp -o bullet7 -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+        "ms-vscode.cpptools",
         "ms-vscode.cmake-tools"
       ]
     }
