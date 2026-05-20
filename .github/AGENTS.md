@@ -1,30 +1,36 @@
 # AGENTS
 
-This repository is a small C++/SFML game named Bullet7. There is no existing README or project documentation, so this file provides the key facts an AI coding agent needs to be productive.
+This repository is a small C++/SFML game named Bullet7. There is no README or project documentation, so this file is the primary guide for AI coding agents.
 
 ## Build and Run
-- Uses native C++ compilation with SFML libraries.
-- Recommended build command:
+- Builds with native `g++` and SFML libraries.
+- Recommended command:
   ```bash
-g++ -g <source-file>.cpp -o <output> -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+g++ -g main.cpp Game.cpp Player.cpp World.cpp Bullet.cpp HUD.cpp -o bullet7 -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
   ```
-- VS Code build task: `Build C++` in `.vscode/tasks.json`
-- The code expects an `assets/` directory at the repository root with textures, fonts, and audio.
+- VS Code build task: `Build Bullet7` in `.vscode/tasks.json`.
+- No CMake, package manager, or external build system is present.
+- Runtime assets are expected in `assets/` at the repository root; missing assets may cause load failures.
 
-## Project structure
-- `main.cpp` creates and runs `Game`.
-- `Game.hpp` / `Game.cpp` contain the main loop, event handling, rendering, and game state flow.
-- `Player.hpp` / `Player.cpp`, `World.hpp` / `World.cpp`, `HUD.hpp`, and `UI.hpp` implement game objects and UI components.
-- `Assets.hpp` is a central asset manager that loads textures, fonts, and sound buffers on demand.
-- `Settings.hpp` defines global player controls and game settings via `gSettings`.
+## Key files
+- `main.cpp` starts the game by constructing `Game` and calling `run()`.
+- `Game.hpp` / `Game.cpp` contain the main loop, event processing, game state updates, render dispatch, and menu/game flow.
+- `Player.hpp` / `Player.cpp` implement player behavior and controls.
+- `World.hpp` / `World.cpp` implement map logic, round state, and physics-related world behavior.
+- `HUD.hpp` / `HUD.cpp` and `UI.hpp` render user interface, buttons, and overlays.
+- `Assets.hpp` is the central asset manager. `Assets::get().loadAll()` loads textures, fonts, and sound buffers.
+- `Settings.hpp` defines global `gSettings` and player keybindings.
+- `AppState.hpp` defines the state machine: `MAIN_MENU`, `MAP_SELECT`, `OPTIONS`, `COUNTDOWN`, `PLAYING`, `SCOREBOARD`, `WINNER_SCREEN`, `QUIT`.
 
-## Important conventions
-- The code uses `sf::RenderWindow`, `sf::Music`, `sf::Texture`, `sf::Font`, and other SFML classes directly.
-- Asset lookup uses names like `"p1_idle"` and resolves them to `assets/<name>.png` or `.wav`.
-- Input rebinding is done in `Game.cpp` through `PlayerSettings` and `sf::Event::KeyPressed`.
-- Game flow is state-driven via `AppState` and per-state `update*` / `render*` methods.
+## Conventions
+- The code uses SFML types directly: `sf::RenderWindow`, `sf::Texture`, `sf::Font`, `sf::Music`, `sf::Event`, and `sf::Keyboard::Key`.
+- The game is state-driven; update/render behavior is selected by `AppState` in `Game::update()` and `Game::render()`.
+- Input and key rebinding are handled in `Game::processEvents()`.
+- Visual effects like screen shake and countdown transitions are implemented inside `Game`.
+- Asset keys are resolved through `Assets::get().texture("...")`, `font("...")`, and `soundBuffer("...")`.
 
 ## Notes for AI agents
-- Do not assume there is a full asset set in the workspace; runtime assets may be missing.
-- Prefer small, incremental changes with attention to SFML resource management and event loops.
-- There is no higher-level documentation in the repo, so use the source files as the authoritative reference.
+- Do not invent or assume a complete asset set; code fixes should focus on logic and structure unless asset file handling is explicit.
+- Prefer small, incremental changes and preserve the existing SFML event/render semantics.
+- Use the source files as the authoritative reference for game flow and feature behavior.
+- Keep the UI and state machine consistent when adding or changing gameplay features.
