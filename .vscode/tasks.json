@@ -13,7 +13,6 @@
         "World.cpp",
         "Bullet.cpp",
         "HUD.cpp",
-        "UI.cpp",
         "-o",
         "${workspaceFolder}/bullet7",
         "-lsfml-graphics",
