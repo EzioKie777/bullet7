@@ -8,14 +8,14 @@
     }
   },
   "postCreateCommand": "sudo apt-get update && sudo apt-get install -y libsfml-dev xvfb",
-  "postStartCommand": "if ! pgrep -x Xvfb >/dev/null; then nohup Xvfb :99 -screen 0 1280x720x24 >/tmp/xvfb.log 2>&1 & fi",
+  "postStartCommand": "if ! pgrep -x Xvfb >/dev/null; then nohup Xvfb :98 -screen 0 1280x720x24 >/tmp/xvfb.log 2>&1 & fi",
   "containerEnv": {
-    "DISPLAY": ":99"
+    "DISPLAY": ":98"
   },
   "customizations": {
     "vscode": {
       "extensions": [
-        "ms-vscode.cpptools",
+        "ms-vscode.cpptools",g++ -g main.cpp Game.cpp Player.cpp World.cpp Bullet.cpp HUD.cpp -o bullet7 -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
         "ms-vscode.cmake-tools"
       ]
     }
